@@ -1,0 +1,186 @@
+*,
+*::after,
+*::before{
+	margin: 0;
+	padding: 0;
+}
+:root{
+	--screen-index: calc(1vh + 1vw);
+	--vault-size: calc(var(--screen-index)*24);
+	--tooth-top-width: calc(var(--screen-index)*2);
+	--tooth-bottom-width: calc(var(--screen-index)*4);
+	--tooth-height: calc((var(--screen-index)*2));
+	--color-vault-background: silver;
+	--color-vault-wheel: black;
+	--color-vault-entrance: white;
+	--color-vault-entrance-wall: gray;
+}
+
+.vault{
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	background-color: var(--color-vault-background);
+	overflow: hidden;
+	animation: entrance 1s linear 2s forwards;
+}
+
+@keyframes entrance {
+	0%{
+		opacity: 1;
+		scale: 1;
+	}
+
+	35%{
+		opacity: 1;
+		scale: 3;
+	}
+
+	100%{
+		opacity: 0;
+		scale: 5;
+		display: none;
+	}	
+}
+
+.vault__container{
+	margin-left: auto;
+	margin-right: auto;
+	max-width: min-content;
+}
+
+.vault__body{
+	position: relative;
+}
+
+.vault__wheel{
+	position: relative;
+	background-color: var(--color-vault-wheel);
+	width: var(--vault-size);
+	height: var(--vault-size);
+	border-radius: 50%;
+	animation: door-rotation 2s ease-in forwards;
+}
+
+.vault__wheel--first-layer{
+	background-color: var(--color-vault-entrance-wall);
+	animation: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.vault__wheel--second-layer{
+	background-color: var(--color-vault-entrance);
+	animation: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	scale: 0.9;
+}
+
+@keyframes door-rotation {
+	0%{
+		transform: translate(0) rotate(0) scale(1);
+	}
+	20%{
+		transform: translate(0) rotate(0) scale(1.1);
+	}
+	100%{
+		transform: translate(calc(var(--vault-size)*3.16), 0) rotate(360deg) scale(1.1);
+	}
+}
+
+.vault__tooth{
+	position: absolute;
+	width: var(--tooth-top-width);
+	border-left: calc(var(--tooth-bottom-width)/4) solid transparent;
+	border-right: calc(var(--tooth-bottom-width)/4) solid transparent;
+	border-bottom: var(--tooth-height) solid var(--color-vault-wheel);
+	left: calc(50% - var(--tooth-top-width));
+	top: calc(50% - var(--tooth-height) / 5 * 4);
+	transform-origin: calc( var(--tooth-bottom-width) / 2) 
+	                  calc( var(--tooth-height) / 5 * 4);
+}
+
+.vault__tooth--first-layer{
+	width: var(--tooth-top-width);
+	border-left: calc(var(--tooth-bottom-width)/4) solid transparent;
+	border-right: calc(var(--tooth-bottom-width)/4) solid transparent;
+	border-bottom: var(--tooth-height) solid var(--color-vault-entrance-wall);
+	left: calc(50% - var(--tooth-top-width));
+	top: calc(50% - var(--tooth-height) / 5 * 4);
+}
+
+.vault__tooth--second-layer{
+	width: var(--tooth-top-width);
+	border-left: calc(var(--tooth-bottom-width)/4) solid transparent;
+	border-right: calc(var(--tooth-bottom-width)/4) solid transparent;
+	border-bottom: var(--tooth-height) solid var(--color-vault-entrance);
+	left: calc(50% - var(--tooth-top-width));
+	top: calc(50% - var(--tooth-height) / 5 * 4);
+}
+
+.vault__tooth:nth-child(1){
+	translate: calc(var(--vault-size) / 2 * cos(90deg)) 
+				  calc(var(--vault-size) / -2 * sin(90deg));
+}
+
+.vault__tooth:nth-child(2){
+	translate: calc(var(--vault-size) / 2 * cos(50deg)) 
+	           calc(var(--vault-size) / -2 * sin(50deg));
+	rotate: 40deg;
+}
+
+.vault__tooth:nth-child(3){
+	translate: calc(var(--vault-size) / 2 * cos(10deg)) 
+	           calc(var(--vault-size) / -2 * sin(10deg));
+	rotate: 80deg;
+}
+
+.vault__tooth:nth-child(4){
+	translate: calc(var(--vault-size) / 2 * cos(330deg)) 
+	           calc(var(--vault-size) / -2 * sin(330deg));
+	rotate: 120deg;
+}
+
+.vault__tooth:nth-child(5){
+	translate: calc(var(--vault-size) / 2 * cos(290deg)) 
+	           calc(var(--vault-size) / -2 * sin(290deg));
+	rotate: 160deg;
+}
+
+.vault__tooth:nth-child(6){
+	translate: calc(var(--vault-size) / 2 * cos(250deg)) 
+	           calc(var(--vault-size) / -2 * sin(250deg));
+	rotate: 200deg;
+}
+
+.vault__tooth:nth-child(7){
+	translate: calc(var(--vault-size) / 2 * cos(210deg)) 
+	           calc(var(--vault-size) / -2 * sin(210deg));
+	rotate: 240deg;
+}
+
+.vault__tooth:nth-child(8){
+	translate: calc(var(--vault-size) / 2 * cos(170deg))
+	           calc(var(--vault-size) / -2 * sin(170deg));
+	rotate: 280deg;
+}
+
+.vault__tooth:nth-child(9){
+	translate: calc(var(--vault-size) / 2 * cos(130deg)) 
+	           calc(var(--vault-size) / -2 * sin(130deg));
+	rotate: 320deg;
+}
+
+.wrapper{
+	background-color: black;
+	position: relative;
+	min-height: 100vh;
+	background-image: url(./fallout-back.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
